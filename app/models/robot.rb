@@ -6,6 +6,7 @@ class Robot < ActiveRecord::Base
   def move_right
     return if(!furthest_right?)
     self.space = board.spaces.where(column: (self.space.column + 1), row: self.space.row).first
+    self.save
     move_right
   end
 

@@ -1,6 +1,10 @@
 class BoardsController < ApplicationController
   def new
     @board = Board.create
-    render 'show'
+    redirect_to @board
+  end
+
+  def show
+    @board = Board.find(params[:id])
   end
 end
