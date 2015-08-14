@@ -10,9 +10,10 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
 *
 {
@@ -22,15 +23,26 @@
 
 .board
 {
+  box-shadow: 0px 1px 3px 0px rgba(0,0,0,.15);
   margin: 20px;
   width: 400px;
+  height: 400px;
   .space
   {
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
     float: left;
     width: 50px;
     height: 50px;
-    border: 1px solid;
     padding: 2px;
+    &:nth-child(8n)
+    {
+      border-right: 0px;
+    }
+    &:hover
+    {
+      background: #fafafa;
+    }
     .space-label
     {
       font-size: 8px;
@@ -44,4 +56,7 @@
       background-color: rgba(0,0,255,.5);
     }
   }
+}
+.controls
+{
 }

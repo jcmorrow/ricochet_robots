@@ -22,14 +22,12 @@ class Board < ActiveRecord::Base
   def add_robots
     colors = [:red, :green, :blue]
     colors.each do |color|
-
+      space = random_unoccupied_space
+      space.robot = Robot.new
+      space.save
     end
-    space = random_unoccupied_space
-    space.robot = Robot.new
-    space.save
+
   end
-
-
 
   def random_unoccupied_space
     return self.spaces.unoccupied.order("RANDOM()").first
