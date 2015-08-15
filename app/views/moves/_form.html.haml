@@ -1,0 +1,6 @@
+=form_for [@board, @move] do |form|
+  =form.label :robot_id
+  =form.text_field :robot_id
+  =form.label :direction
+  =form.text_field :direction
+  =form.submit "Move Robot", class: "btn btn-default"

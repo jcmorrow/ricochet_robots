@@ -8,9 +8,4 @@
       =render @board
     .col-xs-12.col-md-6
       %h1 New Move
-      =form_for [@board, @move] do |form|
-        =form.label :robot_id
-        =form.text_field :robot_id
-        =form.label :direction
-        =form.text_field :direction
-        =form.submit "Move Robot", class: "btn btn-default"
+      =render 'moves/form'

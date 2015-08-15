@@ -15,12 +15,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-*
-{
-  margin: 0px;
-  box-sizing: border-box;
-}
-
 .board
 {
   box-shadow: 0px 1px 3px 0px rgba(0,0,0,.15);
@@ -60,7 +54,4 @@
       }
     }
   }
-}
-.controls
-{
 }
