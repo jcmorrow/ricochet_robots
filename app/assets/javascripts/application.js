@@ -26,31 +26,34 @@ $(document).ready(function(){
 
   $('.space').click(function(e)
   {
-    space = $(e.target);
-    if(selected_robot.space.data('row') == space.data("row"))
+    if(selected_robot != '')
     {
-      if(selected_robot.space.data('column') < space.data('column'))
+      space = $(e.target);
+      if(selected_robot.space.data('row') == space.data("row"))
       {
-        $('input#move_direction').val('right');
-        submit_move_form();
+        if(selected_robot.space.data('column') < space.data('column'))
+        {
+          $('input#move_direction').val('right');
+          submit_move_form();
+        }
+        else if(selected_robot.space.data('column') > space.data('column'))
+        {
+          $('input#move_direction').val('left')
+          submit_move_form();
+        }
       }
-      else if(selected_robot.space.data('column') > space.data('column'))
+      if(selected_robot.space.data('column') == space.data('column'))
       {
-        $('input#move_direction').val('left')
-        submit_move_form();
-      }
-    }
-    if(selected_robot.space.data('column') == space.data('column'))
-    {
-      if(selected_robot.space.data('row') < space.data('row'))
-      {
-        $('input#move_direction').val('down')
-        submit_move_form();
-      }
-      else if(selected_robot.space.data('row') > space.data('row'))
-      {
-        $('input#move_direction').val('up')
-        submit_move_form();
+        if(selected_robot.space.data('row') < space.data('row'))
+        {
+          $('input#move_direction').val('down')
+          submit_move_form();
+        }
+        else if(selected_robot.space.data('row') > space.data('row'))
+        {
+          $('input#move_direction').val('up')
+          submit_move_form();
+        }
       }
     }
   })
