@@ -2,9 +2,17 @@
   .col-xs-12.col-md-6
     =render @board
   .col-xs-12.col-md-6
-    =link_to 'new board', new_board_path, class: 'btn btn-default'
-    .controls
-      =link_to 'move up', robot_move_up_path(@board.robots.first), class: 'btn btn-default up'
-      =link_to 'move right', robot_move_right_path(@board.robots.first), class: 'btn btn-default right'
-      =link_to 'move down', robot_move_down_path(@board.robots.first), class: 'btn btn-default down'
-      =link_to 'move left', robot_move_left_path(@board.robots.first), class: 'btn btn-default left'
+    %h1 New Move
+    =form_for [@board, @move] do |form|
+      =form.label :robot_id
+      =form.text_field :robot_id
+      =form.label :direction
+      =form.text_field :direction
+      =form.submit "Move Robot", class: "btn btn-default"
+    -#
+      =link_to 'new board', new_board_path, class: 'btn btn-default'
+      .controls
+        =link_to 'move up', robot_move_up_path(@board.robots.first), class: 'btn btn-default up'
+        =link_to 'move right', robot_move_right_path(@board.robots.first), class: 'btn btn-default right'
+        =link_to 'move down', robot_move_down_path(@board.robots.first), class: 'btn btn-default down'
+        =link_to 'move left', robot_move_left_path(@board.robots.first), class: 'btn btn-default left'
