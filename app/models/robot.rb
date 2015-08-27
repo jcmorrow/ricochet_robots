@@ -2,48 +2,42 @@ class Robot < ActiveRecord::Base
   #attrs: color, is_on_space?, is_color_of_interest?
   belongs_to :space
   has_one :board, through: :space
+  after_save :check_goal
 
-  def move_right
-    return if(furthest_right?)
-    self.space = board.spaces.where(column: (self.space.column + 1), row: self.space.row).first
+
+  def check_goal
+    if(space.goal.present? && (space.goal.color == color))
+      space.goal.satisfied = true
+      space.goal.save
+    end
+  end
+
+  def move_to space
+    self.space = space
     self.save
-    move_right
   end
 
   def move_down
-    return if(furthest_down?)
-    self.space = board.spaces.where(column: (self.space.column), row: self.space.row + 1).first
-    self.save
+    return unless space.open_down?
+    move_to(space.down)
     move_down
   end
 
   def move_up
-    return if(furthest_up?)
-    self.space = board.spaces.where(column: (self.space.column), row: self.space.row - 1).first
-    self.save
+    return unless space.open_up?
+    move_to(space.up)
     move_up
   end
 
   def move_left
-    return if(furthest_left?)
-    self.space = board.spaces.where(column: (self.space.column - 1), row: self.space.row).first
-    self.save
+    return unless space.open_left?
+    move_to(space.left)
     move_left
   end
 
-  def furthest_right?
-    self.space.column == (board.size - 1)
-  end
-
-  def furthest_down?
-    self.space.row == (board.size - 1)
-  end
-
-  def furthest_left?
-    self.space.column == (0)
-  end
-
-  def furthest_up?
-    self.space.row == (0)
+  def move_right
+    return unless space.open_right?
+    move_to(space.right)
+    move_right
   end
 end

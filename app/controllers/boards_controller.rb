@@ -7,5 +7,6 @@ class BoardsController < ApplicationController
   def show
     @board = Board.find(params[:id])
     @move = Move.new
+    flash[:notice] = "Solved!" if @board.goal.completed?
   end
 end

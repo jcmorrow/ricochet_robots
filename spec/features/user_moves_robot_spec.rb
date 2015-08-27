@@ -10,6 +10,6 @@ RSpec.feature "User moves a robot" do
 
     click_on("Move Robot")
 
-    expect(board.robots.first).to be_furthest_up
+    expect(board.robots.first.space).not_to be_open_up
   end
 end

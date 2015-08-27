@@ -11,12 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150815000806) do
+ActiveRecord::Schema.define(version: 20150827033732) do
 
   create_table "boards", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "size"
+  end
+
+  create_table "goals", force: :cascade do |t|
+    t.integer  "space_id"
+    t.string   "color"
+    t.boolean  "satisfied"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "moves", force: :cascade do |t|
@@ -39,6 +47,22 @@ ActiveRecord::Schema.define(version: 20150815000806) do
     t.datetime "updated_at", null: false
     t.integer  "row"
     t.integer  "column"
+  end
+
+  create_table "wall_types", force: :cascade do |t|
+    t.boolean  "up"
+    t.boolean  "right"
+    t.boolean  "down"
+    t.boolean  "left"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "walls", force: :cascade do |t|
+    t.integer  "space_id"
+    t.integer  "wall_type_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
 end

@@ -1,6 +1,6 @@
-.space{data: {row: space.row, column: space.column}}
+.space{class: "#{wall_type(space)} #{goal(space)}", data: {row: space.row, column: space.column}}
   .space-label
     =space.row
     =space.column
   -if space.occupied?
-    .robot{id: space.robot.id}
+    .robot{id: space.robot.id, class: space.robot.color}
