@@ -19,8 +19,8 @@
 {
   box-shadow: 0px 1px 3px 0px rgba(0,0,0,.15);
   margin: 20px;
-  width: 400px;
-  height: 400px;
+  width: 800px;
+  height: 800px;
   .space
   {
     border-bottom: 1px solid #ddd;
@@ -60,7 +60,7 @@
     {
       border-left: 2px solid #333;
     }
-    &:nth-child(8n)
+    &:nth-child(16n)
     {
       border-right: 0px;
     }

@@ -21,12 +21,11 @@ class Board < ActiveRecord::Base
   end
 
   def set_size
-    self.size ||= 8
+    self.size ||= 16
     self.save
   end
 
   def add_robots
-    colors = %w[red green blue]
     colors.each do |color|
       space = random_unoccupied_space
       space.robot = Robot.new(color: color)
@@ -48,6 +47,10 @@ class Board < ActiveRecord::Base
     space.save
   end
 
+  def middle_four_spaces
+    space.where("spaces.row IN (7,8) AND spaces.column IN (7,8)")
+  end
+
   def random_unoccupied_space
     return self.spaces.unoccupied.order("RANDOM()").first
   end
@@ -62,7 +65,7 @@ class Board < ActiveRecord::Base
   end
 
   def colors
-    %w[red green blue]
+    %w[red green blue red]
   end
 
 end
