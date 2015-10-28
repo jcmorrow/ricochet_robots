@@ -1,5 +1,5 @@
 .space{class: "#{wall_type(space)} #{goal(space)}", data: {row: space.row, column: space.column}}
-  .space-label
+  .space-label{style: "display: none;"}
     =space.row
     =space.column
   -if space.occupied?

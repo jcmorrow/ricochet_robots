@@ -21,6 +21,7 @@
   margin: 20px;
   width: 800px;
   height: 800px;
+  margin: 0 auto;
   .space
   {
     border-bottom: 1px solid #ddd;
@@ -96,4 +97,8 @@
       }
     }
   }
+}
+#moves_form
+{
+  display: none;
 }
