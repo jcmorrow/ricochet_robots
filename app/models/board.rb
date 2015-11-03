@@ -34,7 +34,7 @@ class Board < ActiveRecord::Base
   end
 
   def add_walls
-    5.times do
+    20.times do
       space = random_space
       space.wall = Wall.new
       space.save
@@ -48,7 +48,7 @@ class Board < ActiveRecord::Base
   end
 
   def middle_four_spaces
-    space.where("spaces.row IN (7,8) AND spaces.column IN (7,8)")
+    spaces.where("spaces.row IN (7,8) AND spaces.column IN (7,8)")
   end
 
   def random_unoccupied_space
@@ -65,7 +65,7 @@ class Board < ActiveRecord::Base
   end
 
   def colors
-    %w[red green blue red]
+    %w[red green blue yellow]
   end
 
 end

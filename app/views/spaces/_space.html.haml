@@ -1,4 +1,4 @@
-.space{class: "#{wall_type(space)} #{goal(space)}", data: {row: space.row, column: space.column}}
+.space{class: "#{wall_type(space)} #{goal(space)} #{middle_four(space)}", data: {row: space.row, column: space.column}}
   .space-label{style: "display: none;"}
     =space.row
     =space.column

@@ -38,6 +38,7 @@ class Space < ActiveRecord::Base
     return false if (wall.present? && wall.right?)
     return false if (right.wall.present? && right.wall.left?)
     return false if right.occupied?
+    return false if board.middle_four_spaces.any? {|space| space == right}
     return true
   end
 
@@ -46,6 +47,7 @@ class Space < ActiveRecord::Base
     return false if (wall.present? && wall.left?)
     return false if (left.wall.present? && left.wall.right?)
     return false if left.occupied?
+    return false if board.middle_four_spaces.any? {|space| space == left}
     return true
   end
 
@@ -54,6 +56,7 @@ class Space < ActiveRecord::Base
     return false if (wall.present? && wall.up?)
     return false if (up.wall.present? && up.wall.down?)
     return false if up.occupied?
+    return false if board.middle_four_spaces.any? {|space| space == up}
     return true
   end
 
@@ -62,6 +65,7 @@ class Space < ActiveRecord::Base
     return false if (wall.present? && wall.down?)
     return false if (down.wall.present? && down.wall.up?)
     return false if down.occupied?
+    return false if board.middle_four_spaces.any? {|space| space == down}
     return true
   end
 

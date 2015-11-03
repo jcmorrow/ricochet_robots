@@ -44,6 +44,10 @@
       {
         background-color: rgba(255,0,0,.5);
       }
+      &.yellow
+      {
+        background-color: rgba(255,255,0,.5);
+      }
     }
     &.wall-right
     {
@@ -60,6 +64,10 @@
     &.wall-left
     {
       border-left: 2px solid #333;
+    }
+    &.middle-four
+    {
+      background-color: #ccc;
     }
     &:nth-child(16n)
     {
@@ -94,6 +102,10 @@
       &.red
       {
         background-color: rgba(255,0,0,.5);
+      }
+      &.yellow
+      {
+        background-color: rgba(255,255,0,.5);
       }
     }
   }

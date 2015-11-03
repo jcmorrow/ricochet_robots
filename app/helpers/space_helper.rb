@@ -12,4 +12,8 @@ module SpaceHelper
   def goal space
     return "goal #{space.goal.color}" if space.goal.present?
   end
+
+  def middle_four space
+    return "middle-four" if (space.row.between?(7,8)) && (space.column.between?(7,8))
+  end
 end
