@@ -10,4 +10,4 @@
       #moves_form.col-xs-12
         %h1 New Move
         =render 'moves/form'
-=react_component('Board', props: {spaces: @board.spaces})
+=react_component('Board', {data: @board.spaces})

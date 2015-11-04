@@ -1,12 +1,11 @@
 var Board = React.createClass({
   render: function(){
-    var spaces = [];
     console.log(this.props)
-    this.props.spaces.forEach(function(space){
-      spaces.push(<Space />)
-    })
+    var spaceNodes = this.props.data.map(function(space){
+      return (<Space />);
+    });
     return (
-      {spaces}
+      <div className="board">{spaceNodes}</div>
     );
   }
 })
