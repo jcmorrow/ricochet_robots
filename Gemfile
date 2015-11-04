@@ -11,6 +11,7 @@ gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'unicorn'
+gem 'react-rails'
 
 group :development, :test do
   gem 'capybara'
