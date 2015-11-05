@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :boards, only: [:new, :show] do
     resources :moves, only: [:create]
+    get 'spaces' => 'boards#spaces'
   end
   #resources :robots, only: []
 

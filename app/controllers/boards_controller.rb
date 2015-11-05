@@ -5,8 +5,13 @@ class BoardsController < ApplicationController
   end
 
   def show
-    @board = Board.find(params[:id])
+    @board = Board.includes(spaces: :robot).find(params[:id])
     @move = Move.new
     flash[:notice] = "Solved!" if @board.goal.completed?
+  end
+
+  def spaces
+    @board = Board.includes(spaces: :robot).find(params[:board_id])
+    render json: @board.spaces.to_json
   end
 end

@@ -10,4 +10,6 @@
       #moves_form.col-xs-12
         %h1 New Move
         =render 'moves/form'
-=react_component('Board', {data: @board.spaces})
+#board
+=javascript_include_tag 'components/space'
+=javascript_include_tag 'components/board'

@@ -15,8 +15,8 @@
 //= require bootstrap-sprockets
 //= require react
 //= require react_ujs
-//= require components
-//= require_tree .
+
+
 var selected_robot = '';
 $(document).ready(function(){
   $('.robot').click(function(e){
