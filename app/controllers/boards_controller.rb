@@ -12,6 +12,6 @@ class BoardsController < ApplicationController
 
   def spaces
     @board = Board.includes(spaces: :robot).find(params[:board_id])
-    render json: @board.spaces.to_json
+    render json: @board.spaces.to_json(include: :robot)
   end
 end
