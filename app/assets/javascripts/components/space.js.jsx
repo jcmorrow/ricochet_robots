@@ -2,11 +2,7 @@ var Space = React.createClass({
   getInitialState: function(){
     if(this.props.robot != null)
     {
-      var robot = <Robot data={this.props.robot} />
-    }
-    else
-    {
-      var robot = '';
+      var robot = <Robot data={this.props.robot} />;
     }
     return({
       robot: robot
