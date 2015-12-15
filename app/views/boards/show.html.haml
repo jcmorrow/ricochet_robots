@@ -14,6 +14,3 @@
 =javascript_include_tag 'components/robot'
 =javascript_include_tag 'components/space'
 =javascript_include_tag 'components/board'
-:javascript
-  var data = [];
-  ReactDOM.render(React.createElement(Board, { data: data, url: "/boards/#{@board.id}/spaces"}), document.getElementById('board'));
