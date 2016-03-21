@@ -16,8 +16,12 @@ group :development, :test do
   gem 'capybara'
   gem 'rspec-rails'
   gem 'byebug'
+  gem 'factory_girl'
+end
+
+group :development do
   gem 'web-console', '~> 2.0'
-  gem 'spring'
   gem 'erb2haml'
+  gem 'spring'
 end
 

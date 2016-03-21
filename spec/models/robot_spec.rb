@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Robot, type: :model do
-  it 'can move to the right' do
+  it 'has a valid factory' do
     FactoryGirl.create(:robot)
   end
   it 'can move to the left'

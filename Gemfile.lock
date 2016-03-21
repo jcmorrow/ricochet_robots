@@ -68,6 +68,8 @@ GEM
       html2haml
     erubis (2.7.0)
     execjs (2.6.0)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     haml (4.0.7)
@@ -199,6 +201,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.1.0)
   erb2haml
+  factory_girl
   haml-rails
   jquery-rails
   rails (= 4.2.3)
