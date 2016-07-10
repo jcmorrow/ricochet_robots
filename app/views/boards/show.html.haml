@@ -1,11 +1,11 @@
 .container
   .row
     .col-xs-12
-      =link_to 'New Board', new_board_path, class: 'btn btn-default'
-.container
-  .row
-    .col-xs-12
       =render @board
     #moves_form.col-xs-12
       %h1 New Move
       =render 'moves/form'
+.container
+  .row
+    .col-xs-12
+      =link_to 'New Board', new_board_path, class: 'btn btn-default'

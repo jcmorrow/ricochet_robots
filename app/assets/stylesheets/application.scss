@@ -18,91 +18,103 @@
 .board
 {
   box-shadow: 0px 1px 3px 0px rgba(0,0,0,.15);
-  margin: 20px;
-  width: 800px;
-  height: 800px;
+  height: 640px;
   margin: 0 auto;
+  width: 640px;
+
   .space
   {
     border-bottom: 1px solid #ddd;
     border-right: 1px solid #ddd;
     float: left;
-    width: 50px;
-    height: 50px;
+    height: 40px;
     padding: 2px;
+    width: 40px;
+
     &.goal
     {
       &.green
       {
         background-color: rgba(0,255,0,.5);
       }
+
       &.blue
       {
         background-color: rgba(0,0,255,.5);
       }
+
       &.red
       {
         background-color: rgba(255,0,0,.5);
       }
+
       &.yellow
       {
         background-color: rgba(255,255,0,.5);
       }
     }
+
     &.wall-right
     {
       border-right: 2px solid #333;
     }
+
     &.wall-down
     {
       border-bottom: 2px solid #333;
     }
+
     &.wall-up
     {
       border-top: 2px solid #333;
     }
+
     &.wall-left
     {
       border-left: 2px solid #333;
     }
+
     &.middle-four
     {
       background-color: #ccc;
     }
+
     &:nth-child(16n)
     {
       border-right: 0px;
     }
+
     &:hover
     {
       background: #fafafa;
     }
-    .space-label
-    {
-      font-size: 8px;
-      position: absolute;
-    }
+
     .robot
     {
       width: 100%;
       height: 100%;
       border-radius: 50%;
+
       &.selected
       {
         box-shadow: 0px 1px 5px rgba(0,0,0,.5)
       }
+
       &.green
       {
         background-color: rgba(0,255,0,.5);
       }
+
       &.blue
       {
         background-color: rgba(0,0,255,.5);
       }
+
       &.red
       {
         background-color: rgba(255,0,0,.5);
       }
+
       &.yellow
       {
         background-color: rgba(255,255,0,.5);
