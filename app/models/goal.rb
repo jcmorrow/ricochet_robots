@@ -5,5 +5,4 @@ class Goal < ActiveRecord::Base
   def completed?
     satisfied
   end
-
 end

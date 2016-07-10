@@ -7,6 +7,7 @@ class Space < ActiveRecord::Base
   validates_presence_of :board_id
 
   scope :unoccupied, -> { includes(:robot).where(robots: { id: nil }) }
+  scope :random, -> { order("RANDOM()") }
 
   def occupied?
     robot.present?

@@ -1,8 +1,16 @@
 class Board < ActiveRecord::Base
   BOARD_SIZE = 16
+  COLORS = %w[red green blue yellow].freeze
+
   has_many :spaces
   has_many :robots, through: :spaces
+  has_many :goals, through: :spaces
+
   after_create :add_spaces
+
+  def goal
+    goals.first
+  end
 
   def add_spaces
     set_size
@@ -17,55 +25,38 @@ class Board < ActiveRecord::Base
     add_goal
   end
 
-  def goal
-    Goal.includes(:space).where(spaces: {board_id: self}).first
-  end
-
   def set_size
     update(size: BOARD_SIZE)
   end
 
   def add_robots
-    colors.each do |color|
-      space = random_unoccupied_space
-      space.robot = Robot.new(color: color)
-      space.save
+    COLORS.each do |color|
+      space = spaces.random.unoccupied.first
+      space.update(robot: Robot.new(color: color))
     end
   end
 
   def add_walls
     20.times do
-      space = random_space
-      space.wall = Wall.new
-      space.save
+      random_space.update(wall: Wall.new)
     end
   end
 
   def add_goal
-    space = random_unoccupied_space
-    space.goal = Goal.new(color: random_color)
-    space.save
+    space = spaces.joins(:wall).order("RANDOM()").first
+    space.update(goal: Goal.new(color: random_color))
   end
 
   def middle_four_spaces
     spaces.where("spaces.row IN (7,8) AND spaces.column IN (7,8)")
   end
 
-  def random_unoccupied_space
-    return self.spaces.unoccupied.order("RANDOM()").first
-  end
-
   def random_space
-    return self.spaces.order("RANDOM()").first
+    spaces.order("RANDOM()").first
   end
 
   def random_color
-    index = Random::rand(colors.length)
-    colors[index]
+    index = Random::rand(COLORS.length)
+    COLORS[index]
   end
-
-  def colors
-    %w[red green blue yellow]
-  end
-
 end

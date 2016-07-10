@@ -17,6 +17,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'byebug'
   gem 'factory_girl'
+  gem 'shoulda-matchers'
 end
 
 group :development do
