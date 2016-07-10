@@ -1,5 +1,6 @@
 class Space < ActiveRecord::Base
   belongs_to :board
+  has_many :spaces, through: :board
   has_one :robot
   has_one :wall
   has_one :goal
@@ -13,60 +14,80 @@ class Space < ActiveRecord::Base
     robot.present?
   end
 
-  #movement functions (could be DRYed out?)
   def down distance=1
-    Space.where(board: self.board, row: (self.row + distance), column: self.column).first
+    board_space(row: row + distance, column: column)
   end
 
   def up distance=1
-    Space.where(board: self.board, row: (self.row - distance), column: self.column).first
+    board_space(row: row - distance, column: column)
   end
 
   def left distance=1
-    Space.where(board: self.board, row: (self.row), column: self.column - distance).first
+    board_space(row: row, column: column - distance)
   end
 
   def right distance=1
-    Space.where(board: self.board, row: (self.row), column: self.column + distance).first
+    board_space(row: row, column: column + distance)
+  end
+
+  def middle_four?
+    board.middle_four_spaces.include? self
   end
 
   def open_left?
-    return false if furthest_left?
-    return false if wall&.left?
-    return false if left.wall&.right?
-    return false if left.occupied?
-    return false if board.middle_four_spaces.include? left
-    return true
-  end
-
-  def open_down?
-    return false if furthest_down?
-    return false if wall&.down?
-    return false if down.wall&.up?
-    return false if down.occupied?
-    return false if board.middle_four_spaces.include? down
-    return true
+    !closed_left?
   end
 
   def open_right?
-    return false if furthest_right?
-    return false if wall&.right?
-    return false if right.wall&.left?
-    return false if right.occupied?
-    return false if board.middle_four_spaces.include? right
-    return true
+    !closed_right?
   end
 
   def open_up?
-    return false if furthest_up?
-    return false if wall&.up?
-    return false if up.wall&.down?
-    return false if up.occupied?
-    return false if board.middle_four_spaces.include? up
-    return true
+    !closed_up?
   end
 
-  #Furthest (on the edge of the board)
+  def open_down?
+    !closed_down?
+  end
+
+  def closed_left?
+    furthest_left? || wall_left? || left.occupied? || left.middle_four?
+  end
+
+  def closed_right?
+    furthest_right? || wall_right? || right.occupied? || right.middle_four?
+  end
+
+  def closed_up?
+    furthest_up? || wall_up? || up.occupied? || up.middle_four?
+  end
+
+  def closed_down?
+    furthest_down? || wall_down? || down.occupied? || down.middle_four?
+  end
+
+  def wall_left?
+    wall&.left? || left.wall&.right?
+  end
+
+  def wall_right?
+    wall&.right? || right.wall&.left?
+  end
+
+  def wall_up?
+    wall&.up? || up.wall&.down?
+  end
+
+  def wall_down?
+    wall&.down? || down.wall&.up?
+  end
+
+  private
+
+  def board_space(row:, column:)
+    spaces.find_by(row: row, column: column)
+  end
+
   def furthest_right?
     column == (board.size - 1)
   end
@@ -82,5 +103,4 @@ class Space < ActiveRecord::Base
   def furthest_up?
     row == (0)
   end
-
 end
