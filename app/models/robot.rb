@@ -1,5 +1,4 @@
 class Robot < ActiveRecord::Base
-  #attrs: color, is_on_space?, is_color_of_interest?
   belongs_to :space
   has_one :board, through: :space
 
@@ -12,8 +11,7 @@ class Robot < ActiveRecord::Base
   end
 
   def move_to space
-    self.space = space
-    self.save
+    self.update(space: space)
   end
 
   def move_down

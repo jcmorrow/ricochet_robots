@@ -29,43 +29,39 @@ class Space < ActiveRecord::Base
     Space.where(board: self.board, row: (self.row), column: self.column + distance).first
   end
 
-  #checking for walls/edges.
-  #open_#{direction}?
-  # return false if furthest_#{direction}
-  # self.open_#{direction} && #{direction}.open_#{opposite(direction)}
-  def open_right?
-    return false if furthest_right?
-    return false if (wall.present? && wall.right?)
-    return false if (right.wall.present? && right.wall.left?)
-    return false if right.occupied?
-    return false if board.middle_four_spaces.any? {|space| space == right}
-    return true
-  end
-
   def open_left?
     return false if furthest_left?
-    return false if (wall.present? && wall.left?)
-    return false if (left.wall.present? && left.wall.right?)
+    return false if wall&.left?
+    return false if left.wall&.right?
     return false if left.occupied?
-    return false if board.middle_four_spaces.any? {|space| space == left}
-    return true
-  end
-
-  def open_up?
-    return false if furthest_up?
-    return false if (wall.present? && wall.up?)
-    return false if (up.wall.present? && up.wall.down?)
-    return false if up.occupied?
-    return false if board.middle_four_spaces.any? {|space| space == up}
+    return false if board.middle_four_spaces.include? left
     return true
   end
 
   def open_down?
     return false if furthest_down?
-    return false if (wall.present? && wall.down?)
-    return false if (down.wall.present? && down.wall.up?)
+    return false if wall&.down?
+    return false if down.wall&.up?
     return false if down.occupied?
-    return false if board.middle_four_spaces.any? {|space| space == down}
+    return false if board.middle_four_spaces.include? down
+    return true
+  end
+
+  def open_right?
+    return false if furthest_right?
+    return false if wall&.right?
+    return false if right.wall&.left?
+    return false if right.occupied?
+    return false if board.middle_four_spaces.include? right
+    return true
+  end
+
+  def open_up?
+    return false if furthest_up?
+    return false if wall&.up?
+    return false if up.wall&.down?
+    return false if up.occupied?
+    return false if board.middle_four_spaces.include? up
     return true
   end
 

@@ -5,26 +5,26 @@ class Wall < ActiveRecord::Base
   after_create :randomize_wall_type
 
   def up?
-    wall_type.up
+    wall_type&.up
   end
 
   def right?
-    wall_type.right
+    wall_type&.right
   end
 
   def down?
-    wall_type.down
+    wall_type&.down
   end
 
   def left?
-    wall_type.left
+    wall_type&.left
   end
 
   private
 
   def randomize_wall_type
     return if wall_type.present?
-    self.update_attributes(wall_type: WallType.random.first)
+    update(wall_type: WallType.random.first)
   end
 
 end

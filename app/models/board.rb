@@ -1,4 +1,5 @@
 class Board < ActiveRecord::Base
+  BOARD_SIZE = 16
   has_many :spaces
   has_many :robots, through: :spaces
   after_create :add_spaces
@@ -21,8 +22,7 @@ class Board < ActiveRecord::Base
   end
 
   def set_size
-    self.size ||= 16
-    self.save
+    update(size: BOARD_SIZE)
   end
 
   def add_robots
