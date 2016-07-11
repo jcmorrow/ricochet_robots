@@ -9,5 +9,4 @@ class Move < ActiveRecord::Base
     direction_function = "move_#{direction}".to_sym
     robot.send(direction_function)
   end
-
 end

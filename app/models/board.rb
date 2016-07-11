@@ -37,8 +37,23 @@ class Board < ActiveRecord::Base
   end
 
   def add_walls
-    20.times do
-      random_space.update(wall: Wall.new)
+    quadrants = [
+      UpperLeftQuadrant.new(
+        spaces: spaces.where(row: 0..7, column: 0..7),
+      ),
+      UpperRightQuadrant.new(
+        spaces: spaces.where(row: 0..7, column: 8..15),
+      ),
+      LowerRightQuadrant.new(
+        spaces: spaces.where(row: 8..15, column: 8..15),
+      ),
+      LowerLeftQuadrant.new(
+        spaces: spaces.where(row: 8..15, column: 0..7),
+      ),
+    ]
+    quadrants.each do |quadrant|
+      quadrant.add_inner_walls
+      quadrant.add_side_walls
     end
   end
 
