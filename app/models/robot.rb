@@ -1,7 +1,7 @@
 class Robot < ActiveRecord::Base
   belongs_to :space
   has_one :board, through: :space
-
+  has_many :moves
 
   def check_goal
     if(space.goal.present? && (space.goal.color == color))

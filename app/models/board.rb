@@ -4,6 +4,7 @@ class Board < ActiveRecord::Base
 
   has_many :spaces
   has_many :robots, through: :spaces
+  has_many :moves, through: :robots
   has_many :goals, through: :spaces
 
   after_create :add_spaces
