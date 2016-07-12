@@ -1,6 +1,3 @@
 .space{class: "#{wall_type(space)} #{goal(space)} #{middle_four(space)}", data: {row: space.row, column: space.column}}
-  .space-label{style: "display: none;"}
-    =space.row
-    =space.column
   -if space.occupied?
     .robot{id: space.robot.id, class: space.robot.color}
