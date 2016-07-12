@@ -3,6 +3,8 @@ class Board < ActiveRecord::Base
   COLORS = %w[red green blue yellow].freeze
 
   has_many :spaces
+  has_many :walls, through: :spaces
+  has_many :wall_types, through: :walls
   has_many :robots, through: :spaces
   has_many :moves, through: :robots
   has_many :goals, through: :spaces

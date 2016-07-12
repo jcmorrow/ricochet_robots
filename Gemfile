@@ -22,8 +22,10 @@ group :development, :test do
 end
 
 group :development do
+  gem "bullet"
   gem 'web-console', '~> 2.0'
   gem 'erb2haml'
   gem 'spring'
+  gem 'rack-mini-profiler', require: false
 end
 
