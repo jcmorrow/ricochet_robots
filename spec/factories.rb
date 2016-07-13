@@ -6,4 +6,7 @@ FactoryGirl.define do
 
   factory :board do
   end
+
+  factory :solution do
+  end
 end

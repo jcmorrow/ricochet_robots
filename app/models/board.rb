@@ -17,12 +17,15 @@ class Board < ActiveRecord::Base
 
   def add_spaces
     set_size
+    return if spaces.any?
     indexed_size = size - 1
+    built_spaces = []
     (0..indexed_size).each do |row|
       (0..indexed_size).each do |column|
-        Space.create(board_id: self.id, row: row, column: column)
+        built_spaces << Space.new(board_id: self.id, row: row, column: column)
       end
     end
+    update(spaces: built_spaces)
     add_robots
     add_walls
     add_goal

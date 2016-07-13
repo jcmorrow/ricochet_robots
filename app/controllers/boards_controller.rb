@@ -1,7 +1,8 @@
 class BoardsController < ApplicationController
-  def new
-    @board = Board.create
-    redirect_to @board
+  def create
+    board = Board.create
+    @solution = Solution.create(original_board: board)
+    redirect_to @solution
   end
 
   def show

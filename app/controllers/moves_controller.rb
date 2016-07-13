@@ -1,12 +1,12 @@
 class MovesController < ApplicationController
 
   def create
-    @board = Board.find(params[:board_id])
+    @solution = Solution.find(params[:solution_id])
     @move = Move.new(move_params)
     if @move.save
-      redirect_to @board
+      redirect_to @solution
     else
-      redirect_to @board, flash[:notice] = "Invalid move!"
+      redirect_to @solution, flash[:notice] = "Invalid move!"
     end
   end
 

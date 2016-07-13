@@ -1,0 +1,12 @@
+.container
+  .row
+    .col-xs-12
+      = render @solution.board
+    #h3
+      Moves:
+      = @solution.board.moves.count
+    = link_to "Reset", solution_copy_path(@solution), method: "POST", class: 'btn btn-default'
+    = link_to 'New Game', boards_path, method: "POST", class: 'btn btn-default'
+    #moves_form.col-xs-12
+      %h1 New Move
+      = render 'moves/form'
