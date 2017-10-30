@@ -1,11 +1,10 @@
 source 'https://rubygems.org'
-ruby "2.3.1"
+ruby "2.4.2"
 
-gem 'rails', '5.0.0'
+gem 'rails', '5.1.4'
 gem 'postgresql'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.1.0'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'bootstrap-sass'
@@ -17,14 +16,12 @@ group :development, :test do
   gem 'capybara'
   gem 'rspec-rails'
   gem 'byebug'
-  gem 'factory_girl'
+  gem 'factory_bot_rails'
   gem 'shoulda-matchers'
 end
 
 group :development do
   gem "bullet"
-  gem 'web-console', '~> 2.0'
-  gem 'erb2haml'
   gem 'spring'
   gem 'rack-mini-profiler', require: false
 end
