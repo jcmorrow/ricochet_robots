@@ -2,13 +2,14 @@ class SolutionsController < ApplicationController
   def show
     @solution = Solution.includes(
       :board,
+      :goals,
+      :robots,
       :spaces,
       :walls,
-      :wall_types,
-      :robots,
-      :goals,
     ).find(params[:id])
     @move = Move.new
-    flash.now[:notice] = "Solved!" if @solution.board.goal.completed?
+    if @solution.board.goal.completed?
+      flash.now[:notice] = "Solved!"
+    end
   end
 end

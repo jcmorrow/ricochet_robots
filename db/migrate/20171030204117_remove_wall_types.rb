@@ -1,6 +1,6 @@
-class CreateWallType < ActiveRecord::Migration[4.2]
+class RemoveWallTypes < ActiveRecord::Migration[5.1]
   def change
-    create_table :wall_types do |t|
+    drop_table :wall_types do |t|
       t.boolean :up
       t.boolean :right
       t.boolean :down

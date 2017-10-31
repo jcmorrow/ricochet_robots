@@ -1,4 +1,4 @@
-class AddMoves < ActiveRecord::Migration
+class AddMoves < ActiveRecord::Migration[4.2]
   def change
     create_table :moves do |table|
       table.integer :robot_id

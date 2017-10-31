@@ -1,9 +1,17 @@
-class WallType < ActiveRecord::Base
-  has_many :walls
+class WallType
+  def self.down?
+    false
+  end
 
-  scope :random, -> { order("RANDOM()") }
-  scope :down, -> { where(down: true) }
-  scope :left, -> { where(left: true) }
-  scope :right, -> { where(right: true) }
-  scope :up, -> { where(up: true) }
+  def self.right?
+    false
+  end
+
+  def self.left?
+    false
+  end
+
+  def self.up?
+    false
+  end
 end

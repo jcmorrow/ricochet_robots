@@ -1,30 +1,29 @@
 class Wall < ActiveRecord::Base
-  belongs_to :wall_type
+  enum wall_type: %w(BottomLeft BottomRight TopLeft TopRight).freeze
+
   belongs_to :space
 
-  after_create :randomize_wall_type
+  def wall_type_class
+    "#{wall_type}Wall".constantize
+  end
 
   def up?
-    wall_type&.up
+    wall_type_class.up?
   end
 
   def right?
-    wall_type&.right
+    wall_type_class.right?
   end
 
   def down?
-    wall_type&.down
+    wall_type_class.down?
   end
 
   def left?
-    wall_type&.left
+    wall_type_class.left?
   end
 
-  private
-
-  def randomize_wall_type
-    return if wall_type.present?
-    update(wall_type: WallType.random.first)
+  def randomize_wall_type!
+    update!(wall_type: Wall.wall_types.keys.sample)
   end
-
 end

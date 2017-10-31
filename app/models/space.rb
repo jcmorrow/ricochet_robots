@@ -14,19 +14,19 @@ class Space < ActiveRecord::Base
     robot.present?
   end
 
-  def down distance=1
+  def down(distance=1)
     board_space(row: row + distance, column: column)
   end
 
-  def up distance=1
+  def up(distance=1)
     board_space(row: row - distance, column: column)
   end
 
-  def left distance=1
+  def left(distance=1)
     board_space(row: row, column: column - distance)
   end
 
-  def right distance=1
+  def right(distance=1)
     board_space(row: row, column: column + distance)
   end
 

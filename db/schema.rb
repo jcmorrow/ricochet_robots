@@ -10,70 +10,61 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160712154046) do
+ActiveRecord::Schema.define(version: 20171030233451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "boards", force: :cascade do |t|
+  create_table "boards", id: :serial, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "size"
+    t.integer "size", default: 16, null: false
   end
 
-  create_table "goals", force: :cascade do |t|
-    t.integer  "space_id"
-    t.string   "color"
-    t.boolean  "satisfied"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "moves", force: :cascade do |t|
-    t.integer  "robot_id"
-    t.string   "direction"
+  create_table "goals", id: :serial, force: :cascade do |t|
+    t.integer "space_id"
+    t.string "color"
+    t.boolean "satisfied"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "robots", force: :cascade do |t|
-    t.string   "color"
-    t.integer  "space_id"
+  create_table "moves", id: :serial, force: :cascade do |t|
+    t.integer "robot_id"
+    t.string "direction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "solutions", force: :cascade do |t|
-    t.integer  "board_id"
-    t.integer  "original_board_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.index ["board_id"], name: "index_solutions_on_board_id", using: :btree
-    t.index ["original_board_id"], name: "index_solutions_on_original_board_id", using: :btree
-  end
-
-  create_table "spaces", force: :cascade do |t|
-    t.integer  "board_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "row"
-    t.integer  "column"
-  end
-
-  create_table "wall_types", force: :cascade do |t|
-    t.boolean  "up"
-    t.boolean  "right"
-    t.boolean  "down"
-    t.boolean  "left"
+  create_table "robots", id: :serial, force: :cascade do |t|
+    t.string "color", null: false
+    t.integer "space_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "walls", force: :cascade do |t|
-    t.integer  "space_id"
-    t.integer  "wall_type_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+  create_table "solutions", id: :serial, force: :cascade do |t|
+    t.integer "board_id"
+    t.integer "original_board_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["board_id"], name: "index_solutions_on_board_id"
+    t.index ["original_board_id"], name: "index_solutions_on_original_board_id"
+  end
+
+  create_table "spaces", id: :serial, force: :cascade do |t|
+    t.integer "board_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "row", null: false
+    t.integer "column", null: false
+  end
+
+  create_table "walls", id: :serial, force: :cascade do |t|
+    t.integer "space_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "wall_type", default: 0, null: false
   end
 
 end

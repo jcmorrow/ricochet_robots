@@ -16,7 +16,9 @@ class Quadrant
     inner_wall_offsets.each do |wall_offset|
       row = origin[0] + wall_offset[0]
       column = origin[1] + wall_offset[1]
-      space_at(row: row, column: column).update(wall: Wall.create)
+      wall = Wall.create
+      wall.randomize_wall_type!
+      space_at(row: row, column: column).update(wall: wall)
     end
   end
 

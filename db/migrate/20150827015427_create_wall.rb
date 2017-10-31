@@ -1,4 +1,4 @@
-class CreateWall < ActiveRecord::Migration
+class CreateWall < ActiveRecord::Migration[4.2]
   def change
     create_table :walls do |t|
       t.integer :space_id

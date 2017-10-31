@@ -14,10 +14,10 @@ class UpperLeftQuadrant < Quadrant
   end
 
   def vertical_wall_type
-    WallType.left.down.first
+    "BottomLeft".freeze
   end
 
   def horizontal_wall_type
-    WallType.right.up.first
+    "TopRight".freeze
   end
 end

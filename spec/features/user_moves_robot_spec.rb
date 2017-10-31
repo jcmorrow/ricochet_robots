@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "User moves a robot" do
   scenario "by using the web form" do
-    board = Board.create()
+    board = CreateBoard.run
     solution = create(:solution, original_board: board)
     visit solution_url(solution)
     robot = board.robots.first

@@ -1,4 +1,4 @@
-class CreateGoal < ActiveRecord::Migration
+class CreateGoal < ActiveRecord::Migration[4.2]
   def change
     create_table :goals do |t|
       t.integer :space_id

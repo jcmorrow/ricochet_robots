@@ -4,7 +4,6 @@ class Solution < ActiveRecord::Base
   has_many :spaces, through: :board
   has_many :goals, through: :spaces
   has_many :walls, through: :spaces
-  has_many :wall_types, through: :walls
   has_many :robots, through: :spaces
   has_many :moves, through: :robots
 

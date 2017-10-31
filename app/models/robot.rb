@@ -3,13 +3,13 @@ class Robot < ActiveRecord::Base
   has_one :board, through: :space
   has_many :moves
 
-  def check_goal
-    if(space.goal.present? && (space.goal.color == color))
-      space.goal.update(satisfied: true)
+  def check_goal!
+    if(space.goal&.color == color)
+      space.goal.update!(satisfied: true)
     end
   end
 
-  def move_to new_space
+  def move_to(new_space)
     self.space = new_space
   end
 
@@ -19,7 +19,7 @@ class Robot < ActiveRecord::Base
       move_down
     else
       save
-      check_goal
+      check_goal!
     end
   end
 
@@ -29,7 +29,7 @@ class Robot < ActiveRecord::Base
       move_up
     else
       save
-      check_goal
+      check_goal!
     end
   end
 
@@ -39,7 +39,7 @@ class Robot < ActiveRecord::Base
       move_left
     else
       save
-      check_goal
+      check_goal!
     end
   end
 
@@ -49,7 +49,7 @@ class Robot < ActiveRecord::Base
       move_right
     else
       save
-      check_goal
+      check_goal!
     end
   end
 end

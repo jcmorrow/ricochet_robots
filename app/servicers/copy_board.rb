@@ -8,17 +8,17 @@ class CopyBoard
   end
 
   def run
-    copy = Board.new
-    spaces = spaces_to_copy.map do |space|
-      space_attrs = space.attributes.except("id").merge(
-        goal: goal(space),
-        wall: wall(space),
-        robot: robot(space),
-      )
-      Space.new(space_attrs)
+    Board.create.tap do |copy|
+      spaces = spaces_to_copy.map do |space|
+        space_attrs = space.attributes.except("id").merge(
+          goal: goal(space),
+          wall: wall(space),
+          robot: robot(space),
+        )
+        Space.new(space_attrs)
+      end
+      copy.spaces = spaces
     end
-    copy.spaces = spaces
-    copy
   end
 
   def spaces_to_copy
