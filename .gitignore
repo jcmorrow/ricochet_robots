@@ -17,3 +17,6 @@
 /tmp
 .DS_Store
 .ruby-version
+/public/packs
+/public/packs-test
+/node_modules
