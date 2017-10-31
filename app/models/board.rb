@@ -12,11 +12,13 @@ class Board < ActiveRecord::Base
   end
 
   def add_spaces
+    new_spaces = []
     size.times.with_index do |row|
       size.times.with_index do |column|
-        Space.create!(board: self, row: row, column: column)
+        new_spaces << Space.new(board: self, row: row, column: column)
       end
     end
+    update(spaces: new_spaces)
   end
 
   def add_robots
