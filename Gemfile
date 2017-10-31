@@ -5,7 +5,6 @@ gem "rails", "5.1.4"
 gem "postgresql"
 gem "haml-rails"
 gem "sdoc", "~> 0.4.0", group: :doc
-gem "uglifier", ">= 1.3.0"
 gem "unicorn"
 gem "webpacker"
 
