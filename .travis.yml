@@ -3,6 +3,13 @@ rvm:
   - 2.4.2
 before_script:
   - psql -c 'create database ricochet_robots_test;' -U postgres
+  - ./bin/webpack
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.2.1
+  - export PATH=$HOME/.yarn/bin:$PATH
+  - yarn
 test:
   adapter: postgresql
   database: ricochet_robots_test
+cache:
+  yarn: true

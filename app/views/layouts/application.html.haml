@@ -3,8 +3,9 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title RicochetRobots
-    = stylesheet_link_tag    'application', media: 'all'
-    = javascript_include_tag 'application'
+    = stylesheet_pack_tag 'application'
+    = javascript_pack_tag 'application'
+    = javascript_pack_tag 'hello_react'
     = csrf_meta_tags
   %body
     - if flash

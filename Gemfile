@@ -3,11 +3,7 @@ ruby "2.4.2"
 
 gem "rails", "5.1.4"
 gem "postgresql"
-gem "autoprefixer-rails"
-gem "bootstrap-sass"
 gem "haml-rails"
-gem "jquery-rails"
-gem "sass-rails", "~> 5.0"
 gem "sdoc", "~> 0.4.0", group: :doc
 gem "uglifier", ">= 1.3.0"
 gem "unicorn"
