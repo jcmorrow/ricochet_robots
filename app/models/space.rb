@@ -5,10 +5,21 @@ class Space < ActiveRecord::Base
   has_one :wall
   has_one :goal
 
-  validates_presence_of :board_id
+  def self.unoccupied
+    includes(:robot).where(robots: { id: nil })
+  end
 
-  scope :unoccupied, -> { includes(:robot).where(robots: { id: nil }) }
-  scope :random, -> { order("RANDOM()") }
+  def self.random
+    order("RANDOM()")
+  end
+
+  def self.with_wall
+    includes(:wall).where.not(walls: { id: nil })
+  end
+
+  def self.without_goal
+    includes(:goal).where(goals: { id: nil })
+  end
 
   def occupied?
     robot.present?

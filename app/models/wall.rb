@@ -3,6 +3,10 @@ class Wall < ActiveRecord::Base
 
   belongs_to :space
 
+  def self.random
+    order("RANDOM()")
+  end
+
   def wall_type_class
     "#{wall_type}Wall".constantize
   end

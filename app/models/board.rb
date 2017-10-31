@@ -23,7 +23,7 @@ class Board < ActiveRecord::Base
 
   def add_robots
     COLORS.each do |color|
-      space = spaces.random.unoccupied.first
+      space = spaces.with_wall.unoccupied.random.first
       space.update(robot: Robot.new(color: color))
     end
   end

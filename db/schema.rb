@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171030233451) do
+ActiveRecord::Schema.define(version: 20171031160854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,33 +38,41 @@ ActiveRecord::Schema.define(version: 20171030233451) do
 
   create_table "robots", id: :serial, force: :cascade do |t|
     t.string "color", null: false
-    t.integer "space_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "space_id"
+    t.index ["space_id"], name: "index_robots_on_space_id"
   end
 
   create_table "solutions", id: :serial, force: :cascade do |t|
-    t.integer "board_id"
-    t.integer "original_board_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "board_id"
+    t.bigint "original_board_id"
     t.index ["board_id"], name: "index_solutions_on_board_id"
     t.index ["original_board_id"], name: "index_solutions_on_original_board_id"
   end
 
   create_table "spaces", id: :serial, force: :cascade do |t|
-    t.integer "board_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "row", null: false
     t.integer "column", null: false
+    t.bigint "board_id"
+    t.index ["board_id"], name: "index_spaces_on_board_id"
   end
 
   create_table "walls", id: :serial, force: :cascade do |t|
-    t.integer "space_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "wall_type", default: 0, null: false
+    t.bigint "space_id"
+    t.index ["space_id"], name: "index_walls_on_space_id"
   end
 
+  add_foreign_key "robots", "spaces"
+  add_foreign_key "solutions", "boards"
+  add_foreign_key "solutions", "boards", column: "original_board_id"
+  add_foreign_key "spaces", "boards"
+  add_foreign_key "walls", "spaces"
 end
